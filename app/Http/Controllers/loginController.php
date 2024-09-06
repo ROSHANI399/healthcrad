@@ -79,8 +79,10 @@ if($c->save())
             // echo session()->get('id');
            
         }
+        
         else{
-            echo "Login Fail";
+            // echo "Login Fail";
+             echo "Login Failed: Incorrect Password";
              
         }
      }

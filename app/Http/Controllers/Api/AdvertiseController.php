@@ -16,8 +16,8 @@ class AdvertiseController extends Controller
 
         $validateUser=Validator::make($request->all(),
         [
-            'image'=>'required|mimes:png,jpg,jpeg,gif',
-            'url'=>'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'url'=>'required|unique:advertise,url',
             'status'=>'required',
 
         ]);
@@ -30,14 +30,15 @@ class AdvertiseController extends Controller
             ],401);
         }
             
-            $image=$request->image;
-            $ext=$image->getClientOriginalExtension();
-            $imageName=time().'.'.$ext;
-            $image->move(public_path().'/uploads/',$imageName);
-              
+        $imageFile = $request->file('image');
+        $publicPath = 'uploads';
+        $imageFileName = time() . '_' . $imageFile->getClientOriginalName();
+        $imageFile->move(public_path($publicPath), $imageFileName);
+        $image = url($publicPath . '/' . $imageFileName);
+      
 
             DB::table('advertise')->insert([
-                'image'=>$request->image,
+                'image'=>$image,  
                 'url' => $request->input('url'),
                 'status' => $request->input('status'),
             ]);

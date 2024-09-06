@@ -24,16 +24,16 @@ class LoginController extends Controller
                   'status'=>false,
                   'message'=>'Validation Error',
                   'error'=>$validateUser->errors()
-            ],401);
-            
+            ],401);           
         }
     
+       
         if(!Auth::attempt($request->only(['email','password']))){
             return response()->json([
                 'status'=>false,
                 'message'=>'email and password not matching',
                 
-          ],401);
+           ],401);
         }
 
         $user = Auth::user();

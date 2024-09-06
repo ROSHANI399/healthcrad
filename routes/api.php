@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Api\AdvertiseController;
 use App\Http\Controllers\Api\RegisterController;
+use App\http\Controllers\Api\DoctorlistController;
 use App\Http\Controllers\Api\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,5 @@ Route::post('profile/update',[RegisterController::class,'updateprofile']);
 ///////Advertise////////////
 
 Route::post('advertise',[AdvertiseController::class,'advertise']);
+
+Route::post('doctorregister',[DoctorlistController::class,'doctorregister']);
