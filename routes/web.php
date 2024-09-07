@@ -19,11 +19,14 @@ Route::get('/index', function () {
 
 
 // Route::get('/login',[loginController::class,'create']);
-
+///////login section///////////////////
 Route::post('/login',[loginController::class,'store']);
 Route::get('/login',[loginController::class,'login']);
 Route::post('/login',[loginController::class,'logcode']);
+Route::post('/login',[loginController::class,'logout']);
 
+
+//////////register section///////////////
 Route::get('/register',[AddUserController::class,'register']);
 Route::post('/register',[AddUserController::class,'store']);
 Route::post('/regcode',[AddUserController::class,'regcode']);
@@ -37,14 +40,14 @@ Route::get('/table/delete/{id}',[AddUserController::class,'destroy']);
 Route::get('/advertis_list',[AddUserController::class,'advertis_list']);
 Route::get('/offerslider',[AddUserController::class,'offerslider']);
 
-//////////////////////////users///////////////////////////
 
+//////////////////////////users///////////////////////////
 Route::get('/user-list',[AddUserController::class,'userlist']);
 Route::get('/user-enquiry',[AddUserController::class,'userenquiry']);
 Route::get('/user-privacy',[AddUserController::class,'usereprivacy']);
 
-/////doctor/////////////
 
+/////doctor/////////////
 Route::get('/doctor-add',[AddUserController::class,'adddoctor']);
 Route::get('/doctor-list',[AddUserController::class,'listdoctor']);
 Route::get('/contact',[AddUserController::class,'contact']);

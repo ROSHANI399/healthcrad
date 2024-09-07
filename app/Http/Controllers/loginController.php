@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\login;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,20 +28,14 @@ class loginController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        
-        
-$request->validate(
-    [
-       
+    public function store(Request $request){  
+     $request->validate(
+   
+     [  
         'email'=>'required | email',
         'password'=>'required',
 
-       
-    ]        
-
-) ;
+        ]) ;
 
 echo "<pre>";
 $c=new login;
@@ -77,13 +72,12 @@ if($c->save())
             session()->pull('id');
             echo session()->get('id');
             // echo session()->get('id');
-           
+       
         }
         
         else{
             // echo "Login Fail";
-             echo "Login Failed: Incorrect Password";
-             
+             echo "Login Failed: Incorrect Password"; 
         }
      }
      
@@ -91,6 +85,14 @@ if($c->save())
         echo "Email Not Exit";
    }
 }
+
+public function logout(Request $request){
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect()->route('login');
+   }
+
 
 public function admin(){
     // return view('contact');
@@ -102,6 +104,7 @@ public function admin(){
     /**
      * Display the specified resource.
      */
+    
     public function show(string $id)
     {
         //

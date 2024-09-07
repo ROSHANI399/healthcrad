@@ -16,6 +16,7 @@ class DoctorlistController extends Controller
         try{
         $validate=Validator::make($request->all(),
         [
+          
             'name'=>'required',
             'email' => 'required|email|unique:doctor,email',
             'address'=>'required',
@@ -28,21 +29,30 @@ class DoctorlistController extends Controller
             'city'=>'required',
             'aadhar_front'=>'required|mimes:jpeg,png,jpg,gif|max:2048|unique:doctor,aadhar_front',
             'aadhar_back'=>'required|mimes:jpeg,png,jpg,gif|max:2048|unique:doctor,aadhar_back',
-        ]
+        
+            ]
     );
 
-        if($validate ->fails()){
-        return response()->json([
-              'status'=>false,
-              'message'=>'added Failed',
-            'error'=>$validate ->errors()
+    //     if($validate ->fails()){
+    //     return response()->json([
+    //           'status'=>false,
+    //           'message'=>'added Failed',
+    //         'error'=>$validate ->errors() 
                
-        ],401);
-    }
+    //     ],401);
+    // }
 
- 
+    if ($validate->fails()) {
+        // Convert validation errors to a single line message
+        $errors = implode(", ", $validate->errors()->all());
+        
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed: ' . $errors
+        ], 401);
+    }
     /////profile////
-   
+
     $imageFile = $request->file('profile');
     $publicPath = 'uploads';
     $imageFileName = time() . '_' . $imageFile->getClientOriginalName();
@@ -56,8 +66,6 @@ class DoctorlistController extends Controller
     $imageFile->move(public_path($publicPath), $imageFileName);
     $image = url($publicPath . '/' . $imageFileName);
   
-    
-
     $imageFile = $request->file('aadhar_back');
     $publicPath = 'uploads';
     $imageFileName = time() . '_' . $imageFile->getClientOriginalName();
@@ -65,7 +73,6 @@ class DoctorlistController extends Controller
     $image = url($publicPath . '/' . $imageFileName);
   
     
-
          DB::table('doctor')->insert([
         'name' => $request->input('name'),
         'email' => $request->input('email'),
@@ -79,8 +86,8 @@ class DoctorlistController extends Controller
         'department_name'=>$request->input('department_name'),
         'city'=>$request->input('city'),
         'aadhar_front'=>$image,
-        'aadhar_back'=>$image,
-    
+        'aadhar_back'=>$image,  
+  
     ]);
 
  
