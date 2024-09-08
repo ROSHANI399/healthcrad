@@ -23,7 +23,7 @@ Route::get('/index', function () {
 Route::post('/login',[loginController::class,'store']);
 Route::get('/login',[loginController::class,'login']);
 Route::post('/login',[loginController::class,'logcode']);
-Route::post('/login',[loginController::class,'logout']);
+Route::post('/logout',[loginController::class,'logout']);
 
 
 //////////register section///////////////

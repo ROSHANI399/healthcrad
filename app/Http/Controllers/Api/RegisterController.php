@@ -57,9 +57,9 @@ class   RegisterController extends Controller
             'status'=>True,
             'message'=>'register Successfully',
             'user' => $user,
-            
 
-       ],200);
+    
+        ],200);
     }
     
     catch(\Throwable $th){

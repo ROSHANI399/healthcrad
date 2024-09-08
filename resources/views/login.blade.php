@@ -65,7 +65,7 @@
                   </div>
 
                   <form  action="{{url('/login')}}" method="post"class="row g-3 needs-validation" novalidate>
-               
+      
                   @csrf
                
                     <div class="col-12">
@@ -103,9 +103,9 @@
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
-                    <!-- <div class="col-12">
-                      <p class="small mb-0">Don't have account? <a href=" ">Create an account</a></p>
-                    </div> -->
+                    <div class="col-12">
+                      <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                    </div>
 
                     @if($errors->any())
         <div class="col-12">
@@ -115,6 +115,7 @@
         </div>
     @endif
                   </form>
+
                 </div>
               </div>
 

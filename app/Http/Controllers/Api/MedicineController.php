@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\Models\User;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use  Illuminate\Support\Facades\Auth;
@@ -26,7 +26,7 @@ class MedicineController extends Controller
     'box'=>'required',
     's_price'=>'required',
    
-    // 'quantity'=>'required',
+   
     // 'generic'=>'required',
     // 'company'=>'required',
     // 'effects'=>'required',
@@ -52,7 +52,7 @@ class MedicineController extends Controller
     // }
 
     if ($validate->fails()) {
-        // Convert validation errors to a single line message
+ 
         $errors = implode(", ", $validate->errors()->all());
         
         return response()->json([
@@ -69,8 +69,8 @@ class MedicineController extends Controller
         'discount'=>$request->input('discount'),
         'box'=>$request->input('box'),
         's_price'=>$request->input('s_price'),
-        // 'quantity'=>$request->input('category'),
-       
+        
+      
         // 'generic'=>$request->input('generic'),
         // 'company'=>$request->input('company'),
         // 'effects'=>$request->input('effects'),
