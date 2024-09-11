@@ -36,7 +36,8 @@ class Register_Controller extends Controller
         }else{
             $validate = Validator::make($request->only('mobileno'), [
                 // 'mobileno' => 'required|mobileno|unique:register',
-                'mobileno'=>'required',
+                'mobileno'=>'required|digits:10',
+           
             ]);
              
                if ($validate->fails()) {
@@ -74,7 +75,7 @@ class Register_Controller extends Controller
      }           
  }
 
-       $id= DB::table('register')->insertGetId([
+            $id= DB::table('register')->insertGetId([
             'name'=>$request->input('name'),
             'email'=>$request->input('email'),
             // 'password' => Hash::make($request->input('password')),
@@ -91,7 +92,7 @@ class Register_Controller extends Controller
         ], 200);
     }
 
-    catch(\Throwable $th){
+        catch(\Throwable $th){
         return response()->json([
         'status'=>false,
         'error' => $th->getMessage(),
@@ -100,33 +101,101 @@ class Register_Controller extends Controller
        }
     }
 
-
-/////////Update profile////////
-public function update(Request $request,$id){
-    // echo "update";
     
-    $register=register::find($id);
-    
-    if($register){
-        $register->name=$request->name;
-        $register->email=$request->email;
-        $register->mobileno=$request->mobileno;
-        $register->gender=$request->gender;
-        $register->dob=$request->dob;
-        $register->update();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'updated added successfully .',
-             
-            ], 200);
-        
+/////////Update////////
+public function update(Request $request, $id)
+{
+    try{
+        $validate = Validator::make($request->only('name'), [
+            // 'name' => 'required|string|max:255'
+        ]);
+            if ($validate->fails()) {
+            $errors = implode(", ", $validate->errors()->all());
+            return response()->json([
+            'status' => false,
+            'message' => 'Failed: ' . $errors
+        ], 401);
+   
+   
     }else{
-        return response()->json([
-          'status'=>404,
-         'message' => 'id not found .',
-        ],404);
-    }
+        $validate = Validator::make($request->only('email'), [
+            //'email' => 'required|string|email|max:255|unique:register',                    
+        ]);
+             if ($validate->fails()) {
+             $errors = implode(", ", $validate->errors()->all());
+             return response()->json([
+            'status' => false,
+            'message' => 'Failed: ' . $errors
+        ], 401);
+   
+    }else{
+        $validate = Validator::make($request->only('mobileno'), [
+            // 'mobileno' => 'required|mobileno|unique:register',
+            // 'mobileno'=>'required',
+           'mobileno'=>'required|digits:10',
+        ]);
+         
+           if ($validate->fails()) {
+           $errors = implode(", ", $validate->errors()->all()); 
+           return response()->json([
+          'status' => false,
+          'message' => 'Failed: ' . $errors
+        ], 401);
+   
+    }else{
+          $validate = Validator::make($request->only('gender'), [
+        //  'gender'=>'required|string|in:male,female,other'
+        ]);
+             if ($validate->fails()) {
+             $errors = implode(", ", $validate->errors()->all());
+             return response()->json([
+            'status' => false,
+            'message' => 'Failed: ' . $errors
+        ], 401);
+   
+    }else{
+        $validate = Validator::make($request->only('dob'), [
+            // 'dob' => 'required|date'
+        ]);
+             if ($validate->fails()) {
+            $errors = implode(", ", $validate->errors()->all());  
+             return response()->json([
+            'status' => false,
+            'message' => 'Failed: ' . $errors
+        ], 401);
+   
+              }
+         }
+     }
+  }           
 }
+        
+        $user = DB::table('register')->where('id', $id)->first();
+        if ($user) {       
+                 DB::table('register')
+                ->where('id', $id)
+                ->update($request->only(['name','email','mobileno', 'gender', 'dob']));
 
+            return response()->json([
+                'status' => true,
+                'message' => 'Updated successfully.',
+               
+            ], 200);
+
+            } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'failed .',
+            ], 404);
+        }
+
+        }catch (\Throwable $th) {
+        return response()->json([
+            'status' => false,
+            'error' => $th->getMessage(),
+        ], 500);
+       }
+  
+    }
 }

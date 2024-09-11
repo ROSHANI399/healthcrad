@@ -32,9 +32,10 @@ Route::post('medicine',[MedicineController::class,'medicine']);
 
 ////register////
 Route::post('Register',[Register_Controller::class,'Register']);
+///update profile///
+Route::put('register/{id}/update', [Register_Controller::class, 'update']);
 
 ////login////
 Route::post('Login',[LoginApiController::class,'Login']);
 
-///update profile///
-Route::post('register/{id}/update',[Register_Controller::class,'update']);
+ 
