@@ -57,7 +57,7 @@ Route::get('/check_patient',[AddUserController::class,'check_patient']);
 Route::get('/time_slot',[AddUserController::class,'time_slot']);
 Route::get('/bank_detail',[AddUserController::class,'bankdatail']);
 Route::get('/doctor_history',[AddUserController::class,'histroy']);
-
+Route::get('/category',[AddUserController::class,'category']);
 
 ////////////////////pharmacies//////////////////////////
 

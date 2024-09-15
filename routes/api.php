@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\MedicineController;
 use App\Http\Controllers\Api\Register_Controller;
 use App\Http\Controllers\Api\LoginApiController;
+use App\Http\Controllers\Api\UserProfileController;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,7 @@ Route::post('advertise',[AdvertiseController::class,'advertise']);
 Route::post('doctorregister',[DoctorlistController::class,'doctorregister']);
 
 ///medicine///////
-Route::post('medicine',[MedicineController::class,'medicine']);
+Route::post('medicine_cat',[MedicineController::class,'medicine_cat']);
 
 ////register////
 Route::post('Register',[Register_Controller::class,'Register']);
@@ -38,4 +39,6 @@ Route::put('register/{id}/update', [Register_Controller::class, 'update']);
 ////login////
 Route::post('Login',[LoginApiController::class,'Login']);
 
- 
+///User Profile///
+Route::post('department',[UserProfileController::class,'department']);
+Route::post('user/{id}',[UserProfileController::class,'user']);

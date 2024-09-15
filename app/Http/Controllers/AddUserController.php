@@ -191,7 +191,13 @@ if($c->save())
         $user = DB::table('doctor')->get();
         return view('doctor-list', ['users' => $user]);
         }
- 
+
+        public function category(){
+            // return view('doctor-list');
+            $user = DB::table('department')->get();
+            return view('category', ['users' => $user]);
+            }
+     
 
         public function contact(){
         // return view('contact');

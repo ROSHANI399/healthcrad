@@ -356,11 +356,11 @@
           <i class="bi bi-layout-text-window-reverse"></i><span>Doctor</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <!-- <li>
-            <a href="{{ url('/add') }}">
-              <i class="bi bi-circle"></i><span>Add</span>
+          <li>
+            <a href="{{url('/category')}}">
+              <i class="bi bi-circle"></i><span>Doctor_category</span>
             </a>
-          </li> -->
+          </li>
           
           <li>
             <a href="{{ url('/doctor-list') }}">
