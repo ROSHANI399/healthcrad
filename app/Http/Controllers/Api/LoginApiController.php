@@ -15,30 +15,32 @@ class LoginApiController extends Controller
         try{
 
             $validate = Validator::make($request->only('mobileno'), [
-                'mobileno' => 'required',
+                'mobileno' => 'required|digits:10',
             ]);
                  if ($validate->fails()) {
                  $errors = implode(", ", $validate->errors()->all());
                  return response()->json([
                 'status' => false,
                 'message' => 'login Failed: ' . $errors
+              
             ], 401);
 
         }        
    
-    $user= DB::table('register') 
-    ->where('mobileno', $request->mobileno)
+     $user= DB::table('register') 
+    ->where('mobileno', $request->get('mobileno')) 
     ->first();
-
-
-    if (!$user) {
+   
+    if ($request->get('mobileno')!=$user->mobileno) {   
         return response()->json([
             'status' => false,
             'message' => 'Mobile number not matching.',
+         
         ], 401);
+      
     }
-
-
+ 
+         return response()->json($user);
          return response()->json([
         'status' => true,
         'message' => 'login successfully .',

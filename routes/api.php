@@ -29,16 +29,17 @@ Route::post('advertise',[AdvertiseController::class,'advertise']);
 Route::post('doctorregister',[DoctorlistController::class,'doctorregister']);
 
 ///medicine///////
-Route::post('medicine_cat',[MedicineController::class,'medicine_cat']);
+Route::post('medicine/{id}',[MedicineController::class,'medicine']);
 
 ////register////
 Route::post('Register',[Register_Controller::class,'Register']);
+
 ///update profile///
-Route::put('register/{id}/update', [Register_Controller::class, 'update']);
+Route::put('registerprofile/{id}', [Register_Controller::class, 'profile']);
 
 ////login////
 Route::post('Login',[LoginApiController::class,'Login']);
 
 ///User Profile///
 Route::post('department',[UserProfileController::class,'department']);
-Route::post('user/{id}',[UserProfileController::class,'user']);
+Route::post('userprofile/{id}',[UserProfileController::class,'userprofile']);

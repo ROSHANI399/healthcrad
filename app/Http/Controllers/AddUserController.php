@@ -78,7 +78,7 @@ if($c->save())
 
     }
 
- public function regcode(Request $request){
+    public function regcode(Request $request){
     $a=new register;
     $a['url']=$request['url'];
     $a['image']=$request['image'];
@@ -178,8 +178,7 @@ if($c->save())
     
     public function userenquiry()
     {
-        $user = DB::table('enquiry')->get();
-         
+        $user = DB::table('enquiry')->get();      
         return view('user-enquiry', ['users' => $user]);
     }
 
@@ -191,13 +190,7 @@ if($c->save())
         $user = DB::table('doctor')->get();
         return view('doctor-list', ['users' => $user]);
         }
-
-        public function category(){
-            // return view('doctor-list');
-            $user = DB::table('department')->get();
-            return view('category', ['users' => $user]);
-            }
-     
+ 
 
         public function contact(){
         // return view('contact');
@@ -207,8 +200,7 @@ if($c->save())
     }
 
     public function enquiry(){
-        $user = DB::table('enquiry')->get();
-       
+        $user = DB::table('enquiry')->get();       
         return view('doctor-enquiry', ['users' => $user]);
         // return view('doctor-enquiry');
     }

@@ -25,18 +25,22 @@ class Register_Controller extends Controller
         }else{
             $validate = Validator::make($request->only('email'), [
                 'email' => 'required|string|email|max:255|unique:register',
+                
             ]);
                  if ($validate->fails()) {
                  $errors = implode(", ", $validate->errors()->all());
                  return response()->json([
                 'status' => false,
-                'message' => 'Failed: ' . $errors
+                // 'message' => 'Failed: ' . $errors
+                'message'=>'email and mobileno not matching',
             ], 401);
        
         }else{
             $validate = Validator::make($request->only('mobileno'), [
                 // 'mobileno' => 'required|mobileno|unique:register',
                 'mobileno'=>'required|digits:10',
+              
+             
            
             ]);
              
@@ -78,7 +82,6 @@ class Register_Controller extends Controller
             $id= DB::table('register')->insertGetId([
             'name'=>$request->input('name'),
             'email'=>$request->input('email'),
-            // 'password' => Hash::make($request->input('password')),
             'mobileno'=>$request->input('mobileno'),
             'gender'=>$request->input('gender'),
             'dob'=>$request->input('dob'),
@@ -104,7 +107,7 @@ class Register_Controller extends Controller
     
 
 /////////Update////////
-public function update(Request $request, $id)
+public function  profile(Request $request, $id)
 {
     try{
         $validate = Validator::make($request->only('name'), [
@@ -131,8 +134,6 @@ public function update(Request $request, $id)
    
     }else{
         $validate = Validator::make($request->only('mobileno'), [
-            // 'mobileno' => 'required|mobileno|unique:register',
-            // 'mobileno'=>'required',
            'mobileno'=>'required|digits:10',
         ]);
          
@@ -145,7 +146,7 @@ public function update(Request $request, $id)
    
     }else{
           $validate = Validator::make($request->only('gender'), [
-        //  'gender'=>'required|string|in:male,female,other'
+ 
         ]);
              if ($validate->fails()) {
              $errors = implode(", ", $validate->errors()->all());
@@ -156,7 +157,7 @@ public function update(Request $request, $id)
    
     }else{
         $validate = Validator::make($request->only('dob'), [
-            // 'dob' => 'required|date'
+           
         ]);
              if ($validate->fails()) {
             $errors = implode(", ", $validate->errors()->all());  
@@ -179,7 +180,7 @@ public function update(Request $request, $id)
 
             return response()->json([
                 'status' => true,
-                'message' => 'Updated successfully.',
+                'message' => 'change profile successfully.',
                
             ], 200);
 

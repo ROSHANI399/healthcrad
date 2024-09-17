@@ -10,8 +10,8 @@ class UserProfileController extends Controller
 {
     
     public function department(Request $request){
-        // echo 'hello';
-
+     
+            
              $users = DB::table('department')
             ->select('name', 'description','x','y','hospital_id','image')
             ->get();
@@ -20,25 +20,40 @@ class UserProfileController extends Controller
             if ($users()) {
                 return response()->json([
                     'message' => 'Not found',
+                    
                 ], 404);
             }
-    
-            
-                return response()->json([
+              
+                  
+                 return response()->json([
                 'message' => 'successfully',
                 'data' => $users
             ], 200); 
-    
+               
       }   
 
+      
       /////userprofile//////
-      public function user(Request $request ,$id){
-        // echo "user";
+      public function userprofile(Request $request ,$id){
+     
         $data = DB::table('users')
         ->select('*') 
         ->where('id', $id) 
         ->first(); 
 
+
         return response()->json($data);
+        if ($users()) {
+            return response()->json([
+                'message' => 'Not found',
+                
+            ], 404);
+          } 
+      
       }
   }
+
+
+
+
+  
