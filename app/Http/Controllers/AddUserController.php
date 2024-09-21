@@ -5,6 +5,7 @@ use App\Models\register;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use  Illuminate\Support\Facades\Validator;
 
 class AddUserController extends Controller
 {
@@ -27,6 +28,7 @@ class AddUserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
      
@@ -257,7 +259,6 @@ if($c->save())
     }
 
     public function pharmaenquiry(){
-        // return view('pharmaenquiry');
         $user = DB::table('enquiry')->get();
        
         return view('doctor-enquiry', ['users' => $user]);
@@ -266,7 +267,6 @@ if($c->save())
     }
 
     public function pharmabank_detail(){
-        // return view('bank_detail');
         $user = DB::table('bank_detail')->get();
         return view('pharmabank_detail', ['users' => $user]);
       
@@ -275,7 +275,6 @@ if($c->save())
 
 ///////////////////Agency////////////////////
     public function agencylist(){
-        // return view('agencylist');
         $user = DB::table('agency')->get();
         return view('agencylist', ['users' => $user]);
     }
@@ -286,7 +285,6 @@ if($c->save())
     }
 
     public function agencybank_detail(){
-        // return view('agencybank_detail');
         $user = DB::table('bank_detail')->get();
         return view('agencybank_detail', ['users' => $user]);
       
@@ -305,33 +303,135 @@ if($c->save())
 
 ///////////////////////Medicien///////////////////
 
-public function medicien_list(){
-    return view('medicien_list');
+    public function medicien_list(){
+    $user = DB::table('medicine')->get();
+    return view('medicien_list', ['users' => $user]);
   
 }
 
-public function medicienbank_detail(){
-    // return view('medicienbank_detail');
+   public function medicienbank_detail(){
     $user = DB::table('bank_detail')->get();
     return view('medicienbank_detail', ['users' => $user]);
   
 }
 
-
-//////////////////Zone///////////////////////
-
-public function zone_list(){
-    return view('zone_list');
-  
+    public function medicine_add(){
+    return view('medicine_add');
 }
+
+          public function add_medicine(Request $request){
+             
+        //      $request->validate([
+        //     'name' => 'required|string|max:255',
+        //     'description' => 'required',
+        //     'price' => 'required|numeric|min:0',
+        //     'quantity' => 'required|integer|min:1',
+        //     'discount' => 'required|numeric|min:0',
+        //     'category' => 'required', 
+        //     'subcategory'=>'required',
+        //     'coupon' => 'required|string|max:50',
+            
+             
+        // ]);
+        // dd($request);
+
+        $validate=Validator::make($request->all(),
+        [
+          
+            'name' => 'required|string|max:255',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:1',
+            'discount' => 'required|numeric|min:0',
+            'category' => 'required', 
+            'subcategory'=>'required',
+            'coupon' => 'required|string|max:50',
+        
+            ]
+    );
+    
+             DB::table('medicine')->insert([
+            'name' => $request->input('name'),
+            'discription' => $request->input('discription'),
+            'price' => $request->input('price'),
+            'quantity' => $request->input('quantity'),
+            'discount' => $request->input('discount'),
+            'category' => $request->input('category'),
+            'subcategory' => $request->input('subcategory'),
+            'coupon' => $request->input('coupon')
+        ]);     
+        return redirect('/medicien_list');
+                 
+    }   
+    
+  
+    //////////////////Zone///////////////////////
+    
+    public function zone_list(){
+        return view('zone_list');
+    
+    }
+ 
 
 //////////////////////category/////////////
 
 public function category_list(){
-    // return view('category_list');
     $user = DB::table('medicine_category')->get();
     return view('category_list', ['users' => $user]);
-  
+
+    
+}
+
+public function add_category(){
+  return view('add_category');
+    
+}
+
+public function category(Request $request){
+    $validate=Validator::make($request->all(),
+    [
+      
+        'category' => 'required',
+        'description' => 'required',
+    
+        ]
+);
+
+         DB::table('medicine_category')->insert([
+        'category' => $request->input('category'),
+        'description' => $request->input('description'),
+        
+    ]); 
+    return redirect('/category_list');
+}
+
+
+////////////Sub Category//////////////
+public function subcategory(){
+    $user = DB::table('medicine_subcategory')->get();
+    return view('subcategory', ['users' => $user]);
+}
+
+public function subcategory_add(){
+    return view('subcategory_add');
+}
+
+public function add_subcategory(Request $request){
+    $validate=Validator::make($request->all(),
+    [
+      
+        'sub_category' => 'required',
+        'c_id' => 'required',
+    
+        ]
+);
+
+         DB::table('medicine_subcategory')->insert([
+        'sub_category' => $request->input('sub_category'),
+        'c_id' => $request->input('c_id'),
+        
+    ]); 
+    return redirect('/subcategory');
 }
 
 ///order///

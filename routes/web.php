@@ -80,8 +80,9 @@ Route::get('/agency_history',[AddUserController::class,'agency_history']);
 
 Route::get('/medicien_list',[AddUserController::class,'medicien_list']);
 Route::get('/medicienbank_detail',[AddUserController::class,'medicienbank_detail']);
-
-
+Route::get('medicine_add',[AddUserController::class,'medicine_add']);
+Route::post('add_medicine',[AddUserController::class,'add_medicine']);
+ 
 //////////////////////////////Zone//////////////////////////////////
 
 Route::get('/zone_list',[AddUserController::class,'zone_list']);
@@ -90,10 +91,16 @@ Route::get('/zone_list',[AddUserController::class,'zone_list']);
 /////////////////////Category/////////////
 
 Route::get('/category_list',[AddUserController::class,'category_list']);
+Route::get('add_category',[AddUserController::class,'add_category']);
+
+
+/////////////////sub category/////////////////
+Route::get('subcategory',[AddUserController::class,'subcategory']);
+Route::get('subcategory_add',[AddUserController::class,'subcategory_add']);
+Route::post('add_subcategory',[AddUserController::class,'add_subcategory']);
 
 
 //Order//
-
 Route::get('/order_list',[AddUserController::class,'order_list']);
 Route::get('/order_history',[AddUserController::class,'order_history']);
 

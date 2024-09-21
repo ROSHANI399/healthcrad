@@ -91,7 +91,7 @@ class DoctorlistController extends Controller
     ]);
 
  
-    return response()->json([
+       return response()->json([
         'status' => true,
         'message' => 'Doctor list added successfully',
      

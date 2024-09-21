@@ -513,7 +513,7 @@
       
       <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#medicien-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-journal-text"></i><span>Medicien</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-journal-text"></i><span>Medicines</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="medicien-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
@@ -569,6 +569,12 @@
         <li>
             <a href="{{url('category_list')}}">
                 <i class="bi bi-circle"></i><span>List</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{url('subcategory')}}">
+                <i class="bi bi-circle"></i><span>Sub_Category</span>
             </a>
         </li>
     </ul>

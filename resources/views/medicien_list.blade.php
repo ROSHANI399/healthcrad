@@ -1,27 +1,23 @@
 @include('header')
  
   <main id="main" class="main">
-
     <div class="pagetitle">
-     <center> <h1>Medicine List</h1></center>
+     <center><h1><strong>Medicine List</strong></h1></center>
       <nav>
-        <ol class="breadcrumb">
-       
+        <ol class="breadcrumb">   
         </ol>
       </nav>
-    </div><!-- End Page Title -->
+    </div> 
 
     <section class="section">
       <div class="row table">
         <div class="col-lg-12">
-
           <div class="card">
             <div class="card-body">
-            <button type="button" class="btn btn-primary mt-2 ml-5" data-bs-toggle="modal" data-bs-target="#exampleModal"style="position:relative;float:right;left:5px;">
-            Add
-            </button>
-            
-           <!-- Table with stripped rows -->
+            <a href="{{url('medicine_add')}}"><button type="button" class="btn btn-primary mt-2 ml-5" data-bs-toggle="modal" data-bs-target="#exampleModal"style="position:relative;float:right;left:5px;">
+            Add Medicine
+            </button></a>
+       
               <table class="table datatable">
                 <thead>
                   <tr>
@@ -42,22 +38,22 @@
                 </thead>
                 <tbody>
                 
-               
+                @foreach($users as $user)
                      <tr>     
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td></td>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->discount}}</td>
+                        <td>{{$user->price}}</td>
+                        <td>{{$user->discription}}</td>
+                        <td>{{$user->category}}</td>
                   
                         <td> </td>
-                        <td></td>
+                        <td>{{$user->image}}</td>
                         <td><a href=""class="btn btn-info">Show</a></td>
                      
                         <td><a href=""class="btn btn-danger">Delete</a></td>                                          
                     </tr>
-                
+                    @endforeach
                 </tbody>
                 
               </table>
@@ -97,3 +93,5 @@
 </body>
 
 </html>
+
+ 

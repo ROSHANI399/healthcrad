@@ -3,7 +3,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-     <center> <h1>Category List</h1></center>
+     <center> <h1>Sub Category</h1></center>
       <nav>
         <ol class="breadcrumb">
        
@@ -17,46 +17,40 @@
 
           <div class="card">
             <div class="card-body">
-           <a href="{{url('add_category')}}"><button type="button" class="btn btn-primary mt-2 ml-5" data-bs-toggle="modal" data-bs-target="#exampleModal"style="position:relative;float:right;left:5px;">
-            Add Category
+            <a href="{{url('add_subcategory')}}"><button type="button" class="btn btn-primary mt-2 ml-5" data-bs-toggle="modal" data-bs-target="#exampleModal"style="position:relative;float:right;left:5px;">
+            Add SubCategory
             </button></a>
             
-           <!-- Table with stripped rows -->
+           
+           <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
               <table class="table datatable">
                 <thead>
-               
                   <tr>
-                   <th>ID</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>ZoneID</th>
-                    <th>Image</th>
-                      
-                    <th>Action</th>
+                    <th>
+                     ID
+                    </th>
+                    <th>Sub_Category</th>
+                    <th>Category_id</th>
+                    
+                    
+                   
                   </tr>
                 </thead>
-                <tbody>
-                
-                @foreach($users as $user)
+              <tbody>               
+                    @foreach($users as $user)
                      <tr>     
                         <td>{{$user->id}}</td>
-                        <td>{{$user->category}}</td>
-                        <td>{{$user->description}}</td>
-                        <td></td>
-                        <td> </td>
-                      
-                        <td><a href=""class="btn btn-success">Edit</a>
-                        <a href=""class="btn btn-danger">Delete</a></td>                                          
+                        <td>{{$user->sub_category}}</td>
+                        <td>{{$user->c_id}}</td>
+                                                                                                
                     </tr>
-             @endforeach
-                </tbody>
-                
+                 @endforeach
+                </tbody>                
               </table>
-              <!-- End Table with stripped rows -->
-
+            
             </div>
           </div>
-
+         </div>
         </div>
       </div>
     </section>
@@ -64,7 +58,6 @@
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
