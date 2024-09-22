@@ -20,8 +20,7 @@
             <a href="{{url('add_subcategory')}}"><button type="button" class="btn btn-primary mt-2 ml-5" data-bs-toggle="modal" data-bs-target="#exampleModal"style="position:relative;float:right;left:5px;">
             Add SubCategory
             </button></a>
-            
-           
+          
            <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
               <table class="table datatable">
                 <thead>

@@ -35,23 +35,15 @@
                               @foreach($data as $key=> $c)
                                <tr>     
                                  <td>{{$key+1}}</td>                                                  
-                                   <td>{{$c['url']}}</td>
-                                  
+                                   <td>{{$c['url']}}</td>                   
+                                     <td><img  src=" {{$c['image']}}"height="100px";width="100px;"></td>
                                    <td>
-                                    
-                                     <img  src=" {{$c['image']}}"height="100px";width="100px;">
-                                   </td>
-                                    
-                                   
-                                   <td>
-
                                     @if($c['status']=='1')
                                     <a href="{{url('/table/update').'/'.$c['id'].'/2'}}" class="btn btn-primary  btn-sm">Active</a>
                                     @else
                                     <a href="{{url('/table/update').'/'.$c['id'].'/1'}}" class="btn btn-danger btn-sm">Inactive</i></a>                
                                     @endif
                                     </td>
-  
                             <td><a href="{{ url('/table/delete/'.$c['id']) }}"class="btn btn-danger">Delete</a></td>                 
                             <td>{{$c['created_at']}}</td>                     
                       
@@ -64,3 +56,20 @@
       </div>
     </section>
   </main>
+    
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+
+ 

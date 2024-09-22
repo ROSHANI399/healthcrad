@@ -82,6 +82,7 @@ Route::get('/medicien_list',[AddUserController::class,'medicien_list']);
 Route::get('/medicienbank_detail',[AddUserController::class,'medicienbank_detail']);
 Route::get('medicine_add',[AddUserController::class,'medicine_add']);
 Route::post('add_medicine',[AddUserController::class,'add_medicine']);
+Route::get('/medicien_list/medicine_delete/{id}',[AddUserController::class,'medicine_delete']);
  
 //////////////////////////////Zone//////////////////////////////////
 
@@ -92,13 +93,15 @@ Route::get('/zone_list',[AddUserController::class,'zone_list']);
 
 Route::get('/category_list',[AddUserController::class,'category_list']);
 Route::get('add_category',[AddUserController::class,'add_category']);
-
+Route::post('category',[AddUserController::class,'category']);
+Route::get('/category_list/delete/{id}',[AddUserController::class,'delete']);
+Route::get('/category_list/update/{id}',[AddUserController::class,'update']);
+Route::put('/category_list/update_category/{id}',[AddUserController::class,'update_category']);
 
 /////////////////sub category/////////////////
 Route::get('subcategory',[AddUserController::class,'subcategory']);
-Route::get('subcategory_add',[AddUserController::class,'subcategory_add']);
-Route::post('add_subcategory',[AddUserController::class,'add_subcategory']);
-
+Route::get('add_subcategory',[AddUserController::class,'add_subcategory']);
+Route::post('subcategory_add',[AddUserController::class,'subcategory_add']);
 
 //Order//
 Route::get('/order_list',[AddUserController::class,'order_list']);

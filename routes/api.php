@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\MedicineController;
 use App\Http\Controllers\Api\Register_Controller;
 use App\Http\Controllers\Api\LoginApiController;
 use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\Api\SliderController;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +44,10 @@ Route::post('Login',[LoginApiController::class,'Login']);
 ///User Profile///
 Route::post('department',[UserProfileController::class,'department']);
 Route::post('userprofile/{id}',[UserProfileController::class,'userprofile']);
+
+
+////////////slider////////////
+Route::post('slider',[SliderController::class,'slider']);
+
+///////////Ambulance booking//////////////
+

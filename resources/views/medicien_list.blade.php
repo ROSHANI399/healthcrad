@@ -17,21 +17,19 @@
             <a href="{{url('medicine_add')}}"><button type="button" class="btn btn-primary mt-2 ml-5" data-bs-toggle="modal" data-bs-target="#exampleModal"style="position:relative;float:right;left:5px;">
             Add Medicine
             </button></a>
-       
+
+            
+              
               <table class="table datatable">
                 <thead>
                   <tr>
-                    <th>
-                     ID
-                    </th>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Discount</th>
                     <th>Discount Price</th>
                     <th>Description</th>
-                    <th>Category</th>
-                    <th>status</th>
-                    
+                    <th>Category</th>             
                     <th>Image</th>
                     <th>Action</th>
                   </tr>
@@ -42,22 +40,19 @@
                      <tr>     
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
+                        <td></td>
                         <td>{{$user->discount}}</td>
                         <td>{{$user->price}}</td>
                         <td>{{$user->discription}}</td>
-                        <td>{{$user->category}}</td>
-                  
-                        <td> </td>
-                        <td>{{$user->image}}</td>
-                        <td><a href=""class="btn btn-info">Show</a></td>
-                     
-                        <td><a href=""class="btn btn-danger">Delete</a></td>                                          
+                        <td>{{$user->category}}</td>                                   
+                        <td><img  src=" {{$user->image}}"height="100px";width="100px;"></td>                   
+                        <td><a href="{{ url('/medicien_list/medicine_delete/'.$user->id )}}"class="btn btn-danger">Delete</a></td>                                                                 
                     </tr>
                     @endforeach
                 </tbody>
                 
               </table>
-              <!-- End Table with stripped rows -->
+ 
 
             </div>
           </div>

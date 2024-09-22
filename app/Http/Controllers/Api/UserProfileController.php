@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 class UserProfileController extends Controller
 {
     
-    public function department(Request $request){
-     
-            
+    public function department(Request $request){   
              $users = DB::table('department')
             ->select('name', 'description','x','y','hospital_id','image')
             ->get();
@@ -36,22 +34,27 @@ class UserProfileController extends Controller
       /////userprofile//////
       public function userprofile(Request $request ,$id){
      
-        $data = DB::table('users')
+        $users = DB::table('user')
         ->select('*') 
         ->where('id', $id) 
-        ->first(); 
+        ->get(); 
 
 
-        return response()->json($data);
-        if ($users()) {
+        if ($users->isEmpty()) {
             return response()->json([
-                'message' => 'Not found',
-                
+                'error' => 'id not found'
             ], 404);
-          } 
+        }
+
+        if ($users->count() > 1) {
+            return response()->json([
+                'error' => 'Multiple id found'
+            ], 400);  
+        }         
+        return response()->json($users->first());
       
       }
-  }
+ }
 
 
 

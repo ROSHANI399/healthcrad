@@ -15,7 +15,7 @@
             </div>
           </div>
 
-          <form action="{{ url('/add_subcategory') }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ url('/subcategory_add') }}" method="POST" enctype="multipart/form-data">
           @csrf
             <div class="row gy-3 gy-md-4 overflow-hidden">
               <div class="col-12">

@@ -30,11 +30,11 @@
 
         <div class="col-12">
              <label for="exampleFormControlTextarea1" class="form-label"></label>
-                <textarea class="form-control" name="description" id="description" rows="3"placeholder="Description"style="margin-top:-20px;height:250px;"></textarea>
+                <textarea class="form-control" name="discription" id="description" rows="3"placeholder="Description"style="margin-top:-20px;height:250px;"></textarea>
            </div>
 
            <span class="text-danger">
-              @error('description')    
+              @error('discription')    
               {{$message}}`
               @enderror
             </span><br>
@@ -118,7 +118,7 @@
 
               <div class="col-12">
                 <label for="" class="form-label mt-4">Medicine Images</label>
-                <input type="file" class="form-control" name=" " id="medicine image" value=" "placeholder=""style="height:50px;">
+                <input type="file" class="form-control" name="image" id="medicine image" value=" "placeholder=""style="height:50px;">
               </div>
 
              <span class="text-danger">

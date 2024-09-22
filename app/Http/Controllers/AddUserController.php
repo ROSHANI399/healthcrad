@@ -165,7 +165,9 @@ if($c->save())
 
     public function offerslider()
     {
-            return view('/offerslider');
+            // return view('/offerslider');
+            $user = DB::table('offerslider')->get();
+            return view('offerslider', ['users' => $user]);
             
     }
 
@@ -346,10 +348,17 @@ if($c->save())
             'category' => 'required', 
             'subcategory'=>'required',
             'coupon' => 'required|string|max:50',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         
             ]
     );
     
+$imageFile = $request->file('image');
+$publicPath = 'uploads';
+$imageFileName = time() . '_' . $imageFile->getClientOriginalName();
+$imageFile->move(public_path($publicPath), $imageFileName);
+$image = url($publicPath . '/' . $imageFileName);
+
              DB::table('medicine')->insert([
             'name' => $request->input('name'),
             'discription' => $request->input('discription'),
@@ -358,14 +367,27 @@ if($c->save())
             'discount' => $request->input('discount'),
             'category' => $request->input('category'),
             'subcategory' => $request->input('subcategory'),
-            'coupon' => $request->input('coupon')
+            'coupon' => $request->input('coupon'),
+            'image'=>$image, 
         ]);     
+
         return redirect('/medicien_list');
                  
     }   
+
+
+////////delete medicine//////////
+
+public function medicine_delete(string $id)
+{
+   
+    DB::table('medicine')->where('id', $id)->delete(); 
+    return redirect('/medicien_list');
+}
+
     
   
-    //////////////////Zone///////////////////////
+//////////////////Zone///////////////////////
     
     public function zone_list(){
         return view('zone_list');
@@ -393,49 +415,81 @@ public function category(Request $request){
       
         'category' => 'required',
         'description' => 'required',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
     
         ]
 );
 
-         DB::table('medicine_category')->insert([
+$imageFile = $request->file('image');
+$publicPath = 'uploads';
+$imageFileName = time() . '_' . $imageFile->getClientOriginalName();
+$imageFile->move(public_path($publicPath), $imageFileName);
+$image = url($publicPath . '/' . $imageFileName);
+
+        DB::table('medicine_category')->insert([
         'category' => $request->input('category'),
         'description' => $request->input('description'),
+        'image'=>$image, 
+       
+        
         
     ]); 
+    return redirect('/category_list');
+ 
+}
+
+////////delete category//////////
+
+public function delete(string $id)
+{
+   
+    DB::table('medicine_category')->where('id', $id)->delete(); 
     return redirect('/category_list');
 }
 
 
+////////////update category//////////
+public function update(string $id){
+
+     DB::table('medicine_category')->where('id', $id)->first();
+     return redirect('/category_list');
+}
+
+ 
 ////////////Sub Category//////////////
 public function subcategory(){
     $user = DB::table('medicine_subcategory')->get();
     return view('subcategory', ['users' => $user]);
 }
 
-public function subcategory_add(){
-    return view('subcategory_add');
-}
-
-public function add_subcategory(Request $request){
-    $validate=Validator::make($request->all(),
-    [
+public function add_subcategory(){
+    return view('add_subcategory');
       
-        'sub_category' => 'required',
-        'c_id' => 'required',
-    
-        ]
-);
+  }
+  
+  public function subcategory_add(Request $request){
+      $validate=Validator::make($request->all(),
+      [
+        
+          'sub_category' => 'required',
+          'c_id' => 'required',
+         
+      
+          ]
+  );
+
 
          DB::table('medicine_subcategory')->insert([
         'sub_category' => $request->input('sub_category'),
         'c_id' => $request->input('c_id'),
-        
-    ]); 
-    return redirect('/subcategory');
+    
+]); 
+return redirect('/subcategory');
+
 }
 
-///order///
 
+///order///
 public function order_list(){
     return view('order_list');
 }

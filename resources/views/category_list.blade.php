@@ -26,46 +26,34 @@
                 <thead>
                
                   <tr>
-                   <th>ID</th>
+                    <th>ID</th>
                     <th>Category</th>
                     <th>Description</th>
-                    <th>ZoneID</th>
-                    <th>Image</th>
-                      
+                    <!-- <th>ZoneID</th> -->
+                    <th>Image</th>                    
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                
+              
                 @foreach($users as $user)
                      <tr>     
                         <td>{{$user->id}}</td>
                         <td>{{$user->category}}</td>
                         <td>{{$user->description}}</td>
-                        <td></td>
-                        <td> </td>
-                      
-                        <td><a href=""class="btn btn-success">Edit</a>
-                        <a href=""class="btn btn-danger">Delete</a></td>                                          
-                    </tr>
-             @endforeach
-                </tbody>
-                
-              </table>
-              <!-- End Table with stripped rows -->
-
+                        <td><img  src=" {{$user->image}}"height="100px";width="100px;">   </td>             
+                        <td><a href="{{url('/category_list/update/'.$user->id)}}"class="btn btn-success">Edit</a>
+                        <a href="{{ url('/category_list/delete/'.$user->id )}}"class="btn btn-danger">Delete</a></td>                                                              
+                        </tr>
+                  @endforeach
+                </tbody>               
+              </table>  
             </div>
           </div>
-
         </div>
       </div>
     </section>
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-
-
+  </main> 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->

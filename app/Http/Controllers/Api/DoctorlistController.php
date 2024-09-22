@@ -12,7 +12,6 @@ use  Illuminate\Support\Facades\Validator;
 class DoctorlistController extends Controller
 {
     public function doctorregister(Request $request){
-        // echo "doctor_list";
         try{
         $validate=Validator::make($request->all(),
         [

@@ -18,7 +18,33 @@
           <div class="card">
             <div class="card-body">
             
-            
+            <style> 
+ .table-responsive {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .table-responsive::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .table-responsive::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+  }
+
+  .table-responsive::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+
+  @media (max-width: 768px) {
+    .datatable {
+      font-size: 12px;
+    }
+  }
+           </style>
+
+               <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
            <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
@@ -50,6 +76,7 @@
                   
                         <td> </td>
                         <td> </td>
+                        <td></td>
                                                               
                     </tr>
                
